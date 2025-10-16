@@ -1,0 +1,355 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to bottom, #87CEEB, #E0FFFF);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.header {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)); /* Diagonal black fade gradient */
+    backdrop-filter: blur(10px); /* Glassmorphism blur effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 15px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow for glass effect */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the content */
+    gap: 30px; /* Add small gap between title and CORS status */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for glass effect */
+}
+
+.header h1 {
+    margin: 0; /* Reset margin since it's now side by side */
+    font-size: 28px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #FFD700, #FFA500, #00CED1, #87CEEB);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+.header h1::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #FFD700, #FFA500, #00CED1, #87CEEB);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: blur(1px);
+    opacity: 0.7;
+    z-index: -1;
+}
+
+.timer {
+    margin-top: 70px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 500;
+}
+
+.timer p {
+    margin: 0;
+    font-size: 18px;
+    color: #FF4500;
+    font-weight: 700;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 1400px;
+    padding: 15px;
+    box-sizing: border-box;
+    justify-content: flex-start; /* Align items to the start */
+    min-width: 1360px; /* Ensure enough space (200 + 710 + 50 + 400) */
+}
+
+.sidebar {
+    width: 200px;
+    margin-right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar p {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #333;
+    font-weight: 700;
+}
+
+.sidebar p span {
+    color: #DAA520; /* Gold for total */
+}
+
+#unselect-all {
+    background: #FF4500;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    transition: background 0.2s;
+}
+
+#unselect-all:hover {
+    background: #CC3700;
+}
+
+.tasks-container {
+    display: grid; /* Changed to grid for strict 2x2 layout */
+    grid-template-columns: repeat(2, 350px); /* Two columns of 350px each */
+    gap: 10px; /* 10px gap between tiles */
+    width: 710px; /* Fits two 350px tiles + 10px gap */
+    max-width: 710px; /* Enforce max-width */
+    min-width: 710px; /* Prevent shrinking */
+    padding: 10px;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+.log-container {
+    width: 400px; /* Restored to original size */
+    margin-left: 50px; /* Move log slightly to the right */
+    background: #000; /* Black background like CMD */
+    padding: 0; /* No padding for window-like feel */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid #333; /* Gray border for window effect */
+    max-height: 600px; /* Taller for CMD look */
+    display: flex;
+    flex-direction: column;
+}
+
+.log-container h3 {
+    margin: 0;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #FFF; /* White text for title bar */
+    background: #555; /* Gray title bar like CMD */
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-weight: normal;
+    border-bottom: 1px solid #333; /* Separator below title bar */
+    text-transform: uppercase;
+}
+
+#log-list {
+    padding: 10px;
+    max-height: 560px; /* Adjusted for h3 height */
+    overflow-y: auto;
+    flex: 1; /* Takes remaining space */
+}
+
+#log-list p {
+    margin: 5px 0;
+    font-size: 20px;
+    color: #FFF; /* White text for CMD style */
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-weight: normal;
+    line-height: 1.5; /* Better spacing for readability */
+}
+
+.task-box {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    width: 350px; /* Kept at 350px */
+    box-sizing: border-box;
+    transition: transform 0.2s, background 0.2s;
+    flex: 0 0 350px; /* Fixed width for tiles, no shrinking/growing */
+}
+
+.task-box:hover {
+    transform: scale(1.02);
+}
+
+.task-box.selected {
+    background: #90EE90; /* Light green for selected */
+}
+
+.task-box.selected-main {
+    box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.4) inset;
+}
+
+.task-box.selected-second {
+    box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.4) inset;
+}
+
+.select-btn {
+    background: #1e90ff;
+    color: #fff;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    margin: 4px 0;
+}
+
+.select-btn.secondary {
+    background: #6a5acd;
+}
+
+.select-btn:hover {
+    filter: brightness(0.95);
+}
+
+.task-box img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    margin-right: 15px;
+    border: 1px solid #FFD700;
+}
+
+.task-details {
+    flex: 1;
+}
+
+.inner-tiles {
+    display: flex;
+    flex-direction: column; /* stack: one on top, one below */
+    gap: 6px;
+}
+
+.inner-tile {
+    background: rgba(255,255,255,0.95);
+    border: 1px solid #e6e6e6;
+    border-radius: 8px;
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Make inner tile content slightly more compact to fit vertical layout nicely */
+.inner-tile .subtask-details p {
+    margin: 6px 0;
+    font-size: 13px;
+}
+
+.inner-tile .chances-line {
+    font-size: 14px;
+}
+
+.inner-tile:hover {
+    transform: scale(1.01);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+.inner-tile.selected {
+    box-shadow: 0 0 0 2px #32CD32 inset;
+}
+
+.task-details p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #333;
+    font-weight: 700;
+}
+
+/* Ensure chances line matches main task chances sizing */
+.task-details p.chances-line {
+    font-size: 16px; /* match Task 1 chances text */
+    font-weight: 700;
+}
+
+.chances-text.low-chances {
+    color: #8B0000; /* Dark red for chances < 5 */
+}
+
+.chances-text.zero-chances {
+    color: #8B0000; /* Dark red for chances = 0 */
+}
+.second-chances-full {
+    color: #800000; /* Maroon for second chances full */
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.full-text {
+    color: #800000; /* Maroon for "Have full!" */
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, #32CD32, #228B22);
+    width: 0;
+    transition: width 0.5s ease-in-out;
+}
+
+.subtask-details {
+    margin-top: 8px;
+}
+
+.subtask-details p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #555;
+    font-weight: 700;
+}
+
+.subtask-separator {
+    height: 12px;
+}
+
+.nameholder {
+    cursor: pointer;
+}
+
+.coin-value {
+    color: #B8860B; /* Dark yellow (DarkGoldenRod) for better contrast on white */
+}
+
+.total-coins {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+    font-weight: 700;
+}
+
+.total-coins .coin-value {
+    font-weight: 700;
+}
