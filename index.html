@@ -739,23 +739,22 @@
         // Function to activate CORS proxy
         async function activateCorsProxy() {
             try {
+                // Try to activate CORS proxy
                 const response = await fetch('https://cors-anywhere.herokuapp.com/', {
-                    method: 'GET',
-                    mode: 'no-cors'
+                    method: 'GET'
                 });
                 document.getElementById('cors-status').innerText = 'CORS proxy activated!';
                 document.getElementById('cors-status').style.color = '#90EE90';
                 return true;
             } catch (error) {
-                document.getElementById('cors-status').innerText = 'CORS proxy needs manual activation. Click here to activate.';
+                // Show activation instructions
+                document.getElementById('cors-status').innerText = 'Click to activate CORS proxy';
                 document.getElementById('cors-status').style.color = '#FFB6C1';
                 document.getElementById('cors-status').style.cursor = 'pointer';
                 document.getElementById('cors-status').onclick = () => {
                     window.open('https://cors-anywhere.herokuapp.com/', '_blank');
-                    setTimeout(() => {
-                        document.getElementById('cors-status').innerText = 'CORS proxy activated!';
-                        document.getElementById('cors-status').style.color = '#90EE90';
-                    }, 2000);
+                    // Show instructions
+                    alert('Please visit the CORS proxy page and click "Request temporary access to the demo server" button. Then refresh this page.');
                 };
                 return false;
             }

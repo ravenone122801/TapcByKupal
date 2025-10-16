@@ -11,6 +11,131 @@ body {
     min-height: 100vh;
 }
 
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 0 10px;
+    }
+    
+    .header {
+        padding: 10px 15px;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .header h1 {
+        font-size: 20px;
+        text-align: center;
+    }
+    
+    .header > div {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .timer {
+        margin-top: 120px;
+        padding: 8px 15px;
+    }
+    
+    .timer p {
+        font-size: 16px;
+    }
+    
+    .main-container {
+        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+        min-width: auto;
+        padding: 10px;
+    }
+    
+    .sidebar {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    
+    .tasks-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+        min-width: auto;
+        gap: 15px;
+    }
+    
+    .task-box {
+        width: 100%;
+        max-width: 100%;
+        flex: none;
+    }
+    
+    .log-container {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 15px;
+        max-height: 400px;
+    }
+    
+    .log-container h3 {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+    
+    #log-list {
+        max-height: 350px;
+        padding: 8px;
+    }
+    
+    #log-list p {
+        font-size: 14px;
+        margin: 3px 0;
+    }
+    
+    .inner-tiles {
+        gap: 8px;
+    }
+    
+    .inner-tile .subtask-details p {
+        margin: 4px 0;
+        font-size: 12px;
+    }
+    
+    .inner-tile .chances-line {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 18px;
+    }
+    
+    .timer {
+        margin-top: 140px;
+    }
+    
+    .task-box {
+        padding: 12px;
+    }
+    
+    .task-box img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .task-details p {
+        font-size: 14px;
+    }
+    
+    .subtask-details p {
+        font-size: 12px;
+    }
+}
+
 .header {
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)); /* Diagonal black fade gradient */
     backdrop-filter: blur(10px); /* Glassmorphism blur effect */
